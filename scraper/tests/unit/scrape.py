@@ -1,6 +1,7 @@
 import mock
 import scraper.scrape as scrape
 import scraper.model.category as category
+import scraper.model.product as product
 import unittest
 
 
@@ -37,3 +38,23 @@ class TestScraping(unittest.TestCase):
         urls = scrape.get_product_links_from_category_page(html)
         assert mock_parser.parse_product_links_from_category_page.called_with(html)
         assert urls == ['url1', 'url2']
+
+    @mock.patch('scraper.scrape.parser')
+    def test_parsing_links_from_category_page(self, mock_parser):
+        html = 'html'
+        mock_parser.parse_product_details.return_value = {
+            'name': 'a lovely shirt',
+            'price': '£40.00',
+            'item_number': '1234',
+            'details': 'some\ndetails',
+            'image_url': 'www.images.com'
+        }
+        result = scrape.get_product_details_from_product_page(html)
+        assert mock_parser.parse_product_details.called_with(html)
+        assert result == product.Product(
+            'a lovely shirt',
+            '£40.00',
+            '1234',
+            'some\ndetails',
+            'www.images.com'
+        )

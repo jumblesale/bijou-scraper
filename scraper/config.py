@@ -4,3 +4,4 @@ categories_config = {
     'category_page_products_container':     'productresultarea',
     'category_page_product_link_container': 'name'
 }
+product_config = {}

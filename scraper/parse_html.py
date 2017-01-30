@@ -39,3 +39,7 @@ def parse_product_links_from_category_page(html):
         for a in link_container.findAll('a'):
             links.append(a.get('href'))
     return links
+
+
+def parse_product_details(html):
+    pass

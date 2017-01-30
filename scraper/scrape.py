@@ -1,4 +1,5 @@
 from scraper.model import category
+from scraper.model import product
 import scraper.parse_html as parser
 
 
@@ -32,5 +33,12 @@ def get_product_links_from_category_page(category_html):
     return product_links
 
 
-def get_products_from_html(html):
-    products = []
+def get_product_details_from_product_page(product_page_html):
+    details = parser.parse_product_details(product_page_html)
+    return product.Product(
+        details['name'],
+        details['price'],
+        details['item_number'],
+        details['details'],
+        details['image_url']
+    )
