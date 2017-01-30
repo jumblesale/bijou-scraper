@@ -37,8 +37,7 @@ def get_product_details_from_product_page(product_page_html):
     details = parser.parse_product_details(product_page_html)
     return product.Product(
         details['name'],
-        details['price'],
-        details['item_number'],
-        details['details'],
-        details['image_url']
+        details['discounted_price'],
+        details['high_price'],
+        details['item_number']
     )

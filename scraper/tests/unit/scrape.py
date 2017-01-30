@@ -44,17 +44,15 @@ class TestScraping(unittest.TestCase):
         html = 'html'
         mock_parser.parse_product_details.return_value = {
             'name': 'a lovely shirt',
-            'price': '£40.00',
-            'item_number': '1234',
-            'details': 'some\ndetails',
-            'image_url': 'www.images.com'
+            'discounted_price': '£20.00',
+            'high_price': '£40.00',
+            'item_number': '1234'
         }
         result = scrape.get_product_details_from_product_page(html)
         assert mock_parser.parse_product_details.called_with(html)
         assert result == product.Product(
             'a lovely shirt',
+            '£20.00',
             '£40.00',
-            '1234',
-            'some\ndetails',
-            'www.images.com'
+            '1234'
         )

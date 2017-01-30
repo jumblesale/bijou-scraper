@@ -50,9 +50,14 @@ def step_impl(context):
 
 @when(u'I scrape that page for product details')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: When I scrape that page for product details')
+    context.product_details = scrape.get_product_details_from_product_page(context.html)
 
 
 @then(u'I get the product details')
 def step_impl(context):
-    raise NotImplementedError(u'STEP: Then I get the product details')
+    attributes = []
+    for row in context.table:
+        attributes.append((row['attribute'], row['value']))
+    expected_attributes = dict(attributes)
+    actual_attributes = context.product_details.__dict__
+    assert_that(actual_attributes, equal_to(expected_attributes))
