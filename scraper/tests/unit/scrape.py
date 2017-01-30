@@ -37,10 +37,10 @@ class TestScraping(unittest.TestCase):
             ['url1?q=whatever', 'url2?something=otherthing', 'url1?p=v']
         urls = scrape.get_product_links_from_category_page(html)
         assert mock_parser.parse_product_links_from_category_page.called_with(html)
-        assert urls == ['url1', 'url2']
+        assert urls == ['url1?sz=60', 'url2?sz=60']
 
     @mock.patch('scraper.scrape.parser')
-    def test_parsing_links_from_category_page(self, mock_parser):
+    def test_parsing_product_details(self, mock_parser):
         html = 'html'
         mock_parser.parse_product_details.return_value = {
             'name': 'a lovely shirt',

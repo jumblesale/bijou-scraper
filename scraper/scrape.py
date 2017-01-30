@@ -24,10 +24,14 @@ def strip_get_parameters(url):
     return url.split('?')[0]
 
 
+def add_max_items_per_page(url):
+    return url + '?sz=60'
+
+
 def get_product_links_from_category_page(category_html):
     product_links = []
     for url in parser.parse_product_links_from_category_page(category_html):
-        stripped_url = strip_get_parameters(url)
+        stripped_url = add_max_items_per_page(strip_get_parameters(url))
         if stripped_url not in product_links:
             product_links.append(stripped_url)
     return product_links
