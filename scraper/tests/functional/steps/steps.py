@@ -2,7 +2,9 @@ from behave import *
 from os import path
 from scraper import scrape
 from scraper.model import category
+from scraper.generate_data import scrape_data
 from hamcrest import assert_that, equal_to
+import logging
 
 
 # the html examples directory relative to this file
@@ -61,3 +63,8 @@ def step_impl(context):
     expected_attributes = dict(attributes)
     actual_attributes = context.product_details.__dict__
     assert_that(actual_attributes, equal_to(expected_attributes))
+
+
+@when('I fetch all categories and products from the website')
+def step_impl(context):
+    categories = scrape_data()

@@ -38,13 +38,15 @@ tests will use stored html as fixtures for testing.
   and should do something sensible on error - this indicates the page structure has changed.
 * Image URL - this seems to be being produced by JavaScript. The scraper could try
   to figure out the relationship between a product and a product image?
+* This won't work if there are > 60 items in a single category! Is there a page
+  that lists the products without setting a maximum number of items?
 
 ## Resources used
 
 * https://jenisys.github.io/behave.example/tutorials was invaluable in understanding
   how to do some of the matching in behave.
 * http://stackoverflow.com/questions/1227121/compare-object-instances-for-equality-by-their-attributes-in-python
-  for the `__eq__` method on the `Category` and `Product`` model - is this the nicest
+  for the `__eq__` method on the `Category` and `Product` model - is this the nicest
   way to do this?
 
 ## Dependencies

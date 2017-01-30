@@ -66,6 +66,12 @@ def parse_product_details(html):
 
 
 def extract_prices_from_product_details_div(price_div):
+    """
+    Prices appear in three formats: no discount, discounted and price range
+    Try to parse all of them based on what markup is present
+    :param price_div: the portion of html representing the price <div>
+    :return: a hash with keys for discounted_price and high_price
+    """
     prices = {}
     # check for a discounted price
     discounted_price = price_div.find('div', {'class': 'lowPrice'})

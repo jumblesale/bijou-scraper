@@ -8,7 +8,7 @@ def get_categories_from_html(html):
     for parsed_category in parser.parse_categories(html):
         categories.append(category.Category(
             parsed_category["title"],
-            strip_srule(parsed_category["url"])
+            add_max_items_per_page(strip_srule(parsed_category["url"]))
         ))
     return categories
 
@@ -31,7 +31,7 @@ def add_max_items_per_page(url):
 def get_product_links_from_category_page(category_html):
     product_links = []
     for url in parser.parse_product_links_from_category_page(category_html):
-        stripped_url = add_max_items_per_page(strip_get_parameters(url))
+        stripped_url = strip_get_parameters(url)
         if stripped_url not in product_links:
             product_links.append(stripped_url)
     return product_links
