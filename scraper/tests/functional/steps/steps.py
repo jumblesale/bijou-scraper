@@ -45,4 +45,4 @@ def step_impl(context):
 def step_impl(context):
     expected_links = [row['url'] for row in context.table]
     actual_links = context.product_links
-    assert expected_links == actual_links
+    assert_that(actual_links, equal_to(expected_links))
