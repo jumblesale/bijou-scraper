@@ -5,15 +5,15 @@ Feature: Retrieving a list products from an example category page
     Given I have the example page clothing.html
      when I scrape that page for categories
      then I get the categories:
-      | title                 | url                                                 |
-      | Shirts                | http://www.farah.co.uk/clothing/shirts              |
-      | T-shirts              | http://www.farah.co.uk/clothing/t-shirts            |
-      | Polo Shirts           | http://www.farah.co.uk/clothing/polo-shirts         |
-      | Knitwear              | http://www.farah.co.uk/clothing/knitwear            |
-      | Sweatshirts & Hoodies | http://www.farah.co.uk/clothing/sweatshirts-hoodies |
-      | Denim & Trousers      | http://www.farah.co.uk/clothing/denim-trousers      |
-      | Outerwear             | http://www.farah.co.uk/clothing/outerwear           |
-      | Shorts                | http://www.farah.co.uk/clothing/shorts              |
+      | title                 | url                                                       |
+      | Shirts                | http://www.farah.co.uk/clothing/shirts?sz=60              |
+      | T-shirts              | http://www.farah.co.uk/clothing/t-shirts?sz=60            |
+      | Polo Shirts           | http://www.farah.co.uk/clothing/polo-shirts?sz=60         |
+      | Knitwear              | http://www.farah.co.uk/clothing/knitwear?sz=60            |
+      | Sweatshirts & Hoodies | http://www.farah.co.uk/clothing/sweatshirts-hoodies?sz=60 |
+      | Denim & Trousers      | http://www.farah.co.uk/clothing/denim-trousers?sz=60      |
+      | Outerwear             | http://www.farah.co.uk/clothing/outerwear?sz=60           |
+      | Shorts                | http://www.farah.co.uk/clothing/shorts?sz=60              |
 
   @local
   Scenario: Scraping an example category page for product links

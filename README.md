@@ -18,6 +18,10 @@ is not responsible for interfacing with a dependency and so does some business
 logic which is testable in isolation. All other parts of the codebase are covered
 by functional tests.
 
+Given more time, tests could be applied to the `parse_html` module, passing in
+faked chunks of html to test the outcome of parsing it. However this would mean
+doubling the work required every time the remote website updated.
+
 ### Functional tests
 
 Functional tests are run in `behave`. You can invoke them like:

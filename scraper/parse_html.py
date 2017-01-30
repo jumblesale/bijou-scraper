@@ -73,6 +73,12 @@ def extract_prices_from_product_details_div(price_div):
         prices['discounted_price'] = discounted_price.string
         prices['high_price'] = price_div.find('div', {'class': 'standardprice'}).string
         return prices
+    # check for price range
+    price_range_low_price = price_div.find('span', {'itemprop': 'lowPrice'})
+    if price_range_low_price is not None:
+        prices['discounted_price'] = price_range_low_price.string
+        prices['high_price'] = price_div.find('span', {'itemprop': 'highPrice'}).string
+        return prices
     prices['discounted_price'] = ''
     prices['high_price'] = price_div.find('div', {'class': 'salesprice'}).string
     return prices
