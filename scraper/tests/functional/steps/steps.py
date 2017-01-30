@@ -6,7 +6,7 @@ from hamcrest import assert_that, equal_to
 
 
 # the html examples directory relative to this file
-examples_directory = path.join(path.dirname(__file__), '../../../examples/html')
+examples_directory = path.join(path.dirname(__file__), '../../../../examples/html')
 
 
 @given(u'I have the example page {page}')
