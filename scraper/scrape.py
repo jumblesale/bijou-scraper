@@ -17,3 +17,20 @@ def strip_srule(url):
     if url.endswith(srule):
         return url[:-len(srule)]
     return url
+
+
+def strip_get_parameters(url):
+    return url.split('?')[0]
+
+
+def get_product_links_from_category_page(category_html):
+    product_links = []
+    for url in parser.parse_product_links_from_category_page(category_html):
+        stripped_url = strip_get_parameters(url)
+        if stripped_url not in product_links:
+            product_links.append(stripped_url)
+    return product_links
+
+
+def get_products_from_html(html):
+    products = []

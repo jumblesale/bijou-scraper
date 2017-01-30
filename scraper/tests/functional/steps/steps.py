@@ -34,3 +34,15 @@ def step_impl(context):
             'but expected was title "%s" and url "%s"' %
             (actual.title, actual.url, expected.title, expected.url)
         )
+
+
+@when(u'I scrape that page for product links')
+def step_impl(context):
+    context.product_links = scrape.get_product_links_from_category_page(context.html)
+
+
+@then(u'I get the urls')
+def step_impl(context):
+    expected_links = [row['url'] for row in context.table]
+    actual_links = context.product_links
+    assert expected_links == actual_links
