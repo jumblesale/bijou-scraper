@@ -7,5 +7,13 @@ def get_categories_from_html(html):
     parsed = BeautifulSoup(html, 'html.parser')
     for li in parsed.find(id='category-level-1').findAll('li'):
         a = li.findAll('a')[0]
-        categories.append(category.Category(a.get('href'), a.string))
+        href = _strip_srule(a.get('href'))
+        title = a.string
+        categories.append(category.Category(title, href))
     return categories
+
+
+def _strip_srule(url):
+    srule = '/?srule=best-matches'
+    if url.endswith(srule):
+        return url[:-len(srule)]

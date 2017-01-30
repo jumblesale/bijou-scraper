@@ -5,7 +5,10 @@ Scrapes a html page for categories and products
 ## Resources used
 
 * https://jenisys.github.io/behave.example/tutorials was invaluable in understanding
-how to do some of the matching in behave
+  how to do some of the matching in behave
+* http://stackoverflow.com/questions/1227121/compare-object-instances-for-equality-by-their-attributes-in-python
+  for the `__eq__` method on the Category model - is this the nicest
+  way to do this?
 
 ## Dependencies
 

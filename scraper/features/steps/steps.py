@@ -1,20 +1,18 @@
 from behave import *
-import os
+from os import path
 from scraper import scrape
 from scraper.model import category
-from hamcrest.library.collection.issequence_containinginanyorder \
-    import contains_inanyorder
-from hamcrest import assert_that
+from hamcrest import assert_that, equal_to
 
 
 # the html examples directory relative to this file
-examples_directory = os.path.join(os.path.dirname(__file__), '../../../examples/html')
+examples_directory = path.join(path.dirname(__file__), '../../../examples/html')
 
 
 @given(u'I have the example page {page}')
 def step_impl(context, page):
-    path = os.path.join(examples_directory, page)
-    with open(path, 'r') as contents:
+    example = path.join(examples_directory, page)
+    with open(example, 'r') as contents:
         html = contents.read()
     context.html = html
 
@@ -28,5 +26,11 @@ def step_impl(context):
 def step_impl(context):
     expected_categories = [category.Category(row['title'], row['url']) for row in context.table]
     actual_categories = context.categories
-    print(expected_categories)
-    assert_that(contains_inanyorder(*expected_categories), actual_categories)
+    for (expected, actual) in zip(expected_categories, actual_categories):
+        assert_that(
+            actual,
+            equal_to(expected),
+            'Category has title "%s" and url "%s"\n'
+            'but expected was title "%s" and url "%s"' %
+            (actual.title, actual.url, expected.title, expected.url)
+        )
