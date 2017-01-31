@@ -2,9 +2,11 @@ from behave import *
 from os import path
 from scraper import scrape
 from scraper.model import category
-from scraper.generate_data import scrape_data
+from scraper.generate_data import scrape_data, scrape_single_category, categories_to_json
 from hamcrest import assert_that, equal_to
+import json
 import logging
+import pprint
 
 
 # the html examples directory relative to this file
@@ -65,6 +67,27 @@ def step_impl(context):
     assert_that(actual_attributes, equal_to(expected_attributes))
 
 
-@when('I fetch all categories and products from the website')
+@when(u'I fetch all categories and associated products from the website')
 def step_impl(context):
-    categories = scrape_data()
+    context.categories = scrape_data()
+
+
+@when(u'I fetch the first category and associated products from the website')
+def step_impl(context):
+    context.categories = scrape_single_category()
+
+
+@when(u'I convert it to json')
+def step_impl(context):
+    context.json = categories_to_json(context.categories)
+
+
+@then(u'I get a valid set of categories and products')
+def step_impl(context):
+    for category in json.loads(context.json):
+        logging.error(category)
+        assert 'title' in category
+        assert 'url' in category
+        for product in category.products:
+            for attribute in ['name', 'discounted_price', 'high_price', 'item_number']:
+                assert attribute in product

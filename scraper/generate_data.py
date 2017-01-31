@@ -13,9 +13,16 @@ def scrape_data():
     return categories
 
 
+def scrape_single_category():
+    categories = get_categories()
+    category = categories[0]
+    category.products = get_category_products(category)
+    return [category]
+
+
 def get_categories():
     url = categories_config['categories_url']
-    logging.info('Fetching {0}'.format(url))
+    logging.debug('Fetching {0}'.format(url))
     html = retrieve_url.get(url)
     categories = scrape.get_categories_from_html(html)
     return categories
@@ -23,7 +30,7 @@ def get_categories():
 
 def get_category_products(category):
     url = category.url
-    logging.info('\tFor category {0}, fetching {1}'.format(category.title, url))
+    logging.debug('\tFor category {0}, fetching {1}'.format(category.title, url))
     product_links = scrape.get_product_links_from_category_page(
         retrieve_url.get(url)
     )
@@ -34,7 +41,7 @@ def get_category_products(category):
 
 
 def get_product_details_from_product_url(url):
-    logging.info('\t\tFetching {0}'.format(url))
+    logging.debug('\t\tFetching {0}'.format(url))
     product = scrape.get_product_details_from_product_page(
         retrieve_url.get(url)
     )
