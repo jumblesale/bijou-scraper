@@ -27,8 +27,8 @@ class TestScraping(unittest.TestCase):
         ]
         assert mock_parser.parse_categories.called_with(html)
         categories = scrape.get_categories_from_html(html)
-        assert categories[0] == category.Category('socks', '/socks.html')
-        assert categories[1] == category.Category('hats', 'www.hats.com')
+        assert categories[0] == category.Category('socks', '/socks.html?sz=60')
+        assert categories[1] == category.Category('hats', 'www.hats.com?sz=60')
 
     @mock.patch('scraper.scrape.parser')
     def test_parsing_links_from_category_page(self, mock_parser):
@@ -37,7 +37,7 @@ class TestScraping(unittest.TestCase):
             ['url1?q=whatever', 'url2?something=otherthing', 'url1?p=v']
         urls = scrape.get_product_links_from_category_page(html)
         assert mock_parser.parse_product_links_from_category_page.called_with(html)
-        assert urls == ['url1?sz=60', 'url2?sz=60']
+        assert urls == ['url1', 'url2']
 
     @mock.patch('scraper.scrape.parser')
     def test_parsing_product_details(self, mock_parser):
