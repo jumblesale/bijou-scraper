@@ -3,6 +3,7 @@ from scraper.config import categories_config
 import scraper.retrieve_url as retrieve_url
 import json
 import logging
+import time
 
 
 def scrape_data():
@@ -10,6 +11,8 @@ def scrape_data():
     for category in categories:
         category_products = get_category_products(category)
         category.products = category_products
+        # stop rate-limiting
+        time.sleep(1)
     return categories
 
 

@@ -5,8 +5,6 @@ from scraper.model import category
 from scraper.generate_data import scrape_data, scrape_single_category, categories_to_json
 from hamcrest import assert_that, equal_to
 import json
-import logging
-import pprint
 
 
 # the html examples directory relative to this file
@@ -85,9 +83,8 @@ def step_impl(context):
 @then(u'I get a valid set of categories and products')
 def step_impl(context):
     for category in json.loads(context.json):
-        logging.error(category)
         assert 'title' in category
         assert 'url' in category
-        for product in category.products:
+        for product in category['products']:
             for attribute in ['name', 'discounted_price', 'high_price', 'item_number']:
                 assert attribute in product
