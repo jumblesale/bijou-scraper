@@ -8,7 +8,7 @@ Feature: Extracting product details from an individual product page
       | attribute        | value                            |
       | name             | THE JUDE SHORT SLEEVE POLO SHIRT |
       | discounted_price |                                  |
-      | high_price       | £40.00                           |
+      | high_price       | 40.00                            |
       | item_number      | F4KS70E6GP                       |
 
   @local
@@ -19,7 +19,7 @@ Feature: Extracting product details from an individual product page
       | attribute        | value                             |
       | name             | THE FAL LONG SLEEVE CHECKED SHIRT |
       | discounted_price |                                   |
-      | high_price       | £42.00                            |
+      | high_price       | 42.00                             |
       | item_number      | 5018899787594                     |
 
   @local
@@ -29,6 +29,6 @@ Feature: Extracting product details from an individual product page
      then I get the product details:
       | attribute        | value                       |
       | name             | THE KINCH LONG SLEEVE SHIRT |
-      | discounted_price | £49.00                      |
-      | high_price       | £70.00                      |
+      | discounted_price | 49.00                       |
+      | high_price       | 70.00                       |
       | item_number      | F4WF60J6GP                  |

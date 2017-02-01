@@ -91,4 +91,4 @@ def extract_prices_from_product_details_div(price_div):
 
 
 def format_price(price):
-    return price.strip('\n')
+    return price.strip('\n').strip('£')
